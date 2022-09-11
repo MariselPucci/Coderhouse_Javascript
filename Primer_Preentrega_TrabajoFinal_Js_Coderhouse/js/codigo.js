@@ -32,38 +32,38 @@ function arrayFiltrarProductoPorCategoria (nombreCategoria) {
     return arrayObjetosCategoria;
 }
 
-//Definicion de funciones para distintas formas de pago 
+//Definicion de funciones para distintas formas de pago (parte del desafio anterior)
 
-//  Calculo con descuento del 10% por pago en efectivo o transferencia
-  function calculareEectivoTransferencia (montoCarrito) {
-    let monto = montoCarrito * 0.9;
-    return monto.toFixed(2);
-}
+// //  Calculo con descuento del 10% por pago en efectivo o transferencia
+//   function calculareEectivoTransferencia (montoCarrito) {
+//     let monto = montoCarrito * 0.9;
+//     return monto.toFixed(2);
+// }
 
-//Calculo por pago en 3 cuotas sin interes
-function calcularTresCuotas (montoCarrito) {
-    let montoCuota = montoCarrito / 3;
-    return montoCuota.toFixed(2);
-}
+// //Calculo por pago en 3 cuotas sin interes
+// function calcularTresCuotas (montoCarrito) {
+//     let montoCuota = montoCarrito / 3;
+//     return montoCuota.toFixed(2);
+// }
 
-//Calculo por pago en 6 cuotas con interes
-function calcularSeisCuotas (montoCarrito) {
-    let montoCuota = montoCarrito / 6;
-    return montoCuota.toFixed(2);
-}
+// //Calculo por pago en 6 cuotas con interes
+// function calcularSeisCuotas (montoCarrito) {
+//     let montoCuota = montoCarrito / 6;
+//     return montoCuota.toFixed(2);
+// }
 
-//Calculo por pago con 12 cuotas con interes del 30%
-function calcularDoceCuotas (montoCarrito) {
-    let montoCuota = (montoCarrito * 1.3) /12; 
-    return montoCuota.toFixed(2);
-}
+// //Calculo por pago con 12 cuotas con interes del 30%
+// function calcularDoceCuotas (montoCarrito) {
+//     let montoCuota = (montoCarrito * 1.3) /12; 
+//     return montoCuota.toFixed(2);
+// }
 
-//Calculo del nuevo precio por el pago en 12 cuotas (con interes del 30%)
-function nuevoPrecioDoceCuotas (montoCarrito) {
-    let montoCuota = calcularDoceCuotas(montoCarrito);
-    let montoTotal = montoCuota * 12;
-    return montoTotal.toFixed(2);
-}
+// //Calculo del nuevo precio por el pago en 12 cuotas (con interes del 30%)
+// function nuevoPrecioDoceCuotas (montoCarrito) {
+//     let montoCuota = calcularDoceCuotas(montoCarrito);
+//     let montoTotal = montoCuota * 12;
+//     return montoTotal.toFixed(2);
+// }
 
 //=========================================================================================================================
 // Clases

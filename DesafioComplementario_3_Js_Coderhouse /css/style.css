@@ -1,0 +1,20 @@
+* {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: rgb(171, 171, 226);
+}
+
+.titulo {
+  text-transform: uppercase;
+  text-align: center;
+  padding: 50px;
+}
+
+.card {
+  margin: 20px;
+}
+.card-text {
+  padding: 5px;
+}
+
+/*#
+ sourceMappingURL=style.css.map */

@@ -1,0 +1,92 @@
+* {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    background-color: #D5D8DC ;
+}
+
+body {
+    .bannerTitulo {
+        text-align: center;
+    }
+   main {
+        #contenedor-categorias {
+            text-align: center;
+        }
+        #contenedor-productos {
+            .card {
+                margin: 10px;
+                border: 1px solid #000;
+                .card-footer {
+                text-align: center;
+                .btn {
+                    &:hover {
+                        background-color: rgb(64, 170, 151);
+                        border: none ;
+                        color: #000;
+                    }
+                }
+                }
+            }
+        }
+    } 
+}
+
+
+
+
+// /* ===================================================================================== */
+// /* estilos header menu navegacion */
+
+// header {
+//     position: absolute;
+//     z-index: 10;
+//     width: 100%;
+//     background: $fondoPrincipal;
+//     color: $colorPrincipal;
+//     .container { 
+//         .navbar {
+//         margin-top: 0;
+//         padding: 20px 0; 
+//         &.bg-custom {
+//             background: transparent;
+//         }
+//             .container-fluid {
+//                 #logo {
+//                     font: {
+//                         weight: 700;
+//                         size: $fontSizeBrand;  
+//                     }
+//                     color: $colorPrincipal;
+//                     text-transform: uppercase;
+//                 }
+//                 #menu-button {
+//                     &.navbar-toggler{
+//                         color: transparent; 
+//                         .navbar-toggler-icon {
+//                         background: $colorPrincipal;    
+//                     }
+//                     }                  
+//                 }
+                
+//                 #menu {
+//                     margin-left: auto;
+//                     .nav-item {
+//                         font-weight: 700;
+//                         text-transform: uppercase;
+//                         padding: 0 10px;
+//                         & a {
+//                             color: $colorPrincipal;
+//                         }
+//                         .nav-link {
+//                             &.active, &:hover {
+//                                 color: $colorPrincipal;
+//                                 text-shadow: $sombra-colorSecundario;
+//                             }
+//                         }
+//                     }
+//                 }           
+//             }
+//         }
+//     }
+// }     
+
+

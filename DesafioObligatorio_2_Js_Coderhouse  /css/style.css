@@ -1,0 +1,23 @@
+* {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: #D5D8DC;
+}
+
+body .bannerTitulo {
+  text-align: center;
+}
+body main #contenedor-categorias {
+  text-align: center;
+}
+body main #contenedor-productos .card {
+  margin: 10px;
+  border: 1px solid #000;
+}
+body main #contenedor-productos .card .card-footer {
+  text-align: center;
+}
+body main #contenedor-productos .card .card-footer .btn:hover {
+  background-color: rgb(64, 170, 151);
+  border: none;
+  color: #000;
+}/*# sourceMappingURL=style.css.map */

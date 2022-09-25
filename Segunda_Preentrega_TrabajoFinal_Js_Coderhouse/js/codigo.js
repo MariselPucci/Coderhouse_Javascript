@@ -270,7 +270,8 @@ class Carrito{
   borrarOnClick(id){
     let indiceBorrar = this.pedidos.findIndex(
       (pedido) => Number(pedido.producto.id) === Number(id)
-    );  
+    );
+    this.contadorDelCarrito = this.contadorDelCarrito - this.pedidos[indiceBorrar].cantidad
     this.pedidos.splice(indiceBorrar, 1);
     // Esto elimina del DOM el pedido eliminado del carrito
     let productoABorrar = document.getElementById(`contenedor-pedido-${id}`);

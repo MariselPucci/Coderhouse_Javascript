@@ -1,4 +1,4 @@
-//====================================== Desafio Complementario 4 - Operadores avanzados - Js==================================================
+//====================================== Desafio Obligatorio- Librerias - Js==================================================
 
 // Constantes globales
 
@@ -44,7 +44,6 @@ function inicializarElementos() {
   categoriaClases = document.getElementById("btnClases");
   categoriaRoperito = document.getElementById("btnRoperito");
   contenedorProductos = document.getElementById("contenedor-productos");
-  
 }
 
 function inicializarEventos(carrito) {
@@ -52,6 +51,7 @@ function inicializarEventos(carrito) {
   categoriaClases.onclick = () => pintarProductos(arrayFiltrarProductoPorCategoria("Clases"),carrito);
   categoriaRoperito.onclick = () => pintarProductos(arrayFiltrarProductoPorCategoria("Roperito"),carrito);
 }
+
 
 // Funcion para filtrar objetos por categorias 
 // Como input toma un string y devuelve una lista de objetos (productos)
@@ -105,9 +105,10 @@ function pintarProductos(arrayProd,carrito) {
                                   const disponibilidad = indexOfPedido != -1 && productosStock.disponibilidadStock(idProducto, pedidos[indexOfPedido].cantidad)
       
                                   if (disponibilidad){
-                                  carrito.actualizarCarrito()
-                                  localStorage.setItem("contadorDelCarrito", `${contadorDelCarrito}`)
-                                  carritoContador.innerHTML=`${contadorDelCarrito}`
+                                    mostrarMensajeConfirmacion("Producto agregado correctamente", "#40a483")
+                                    carrito.actualizarCarrito()
+                                    localStorage.setItem("contadorDelCarrito", `${contadorDelCarrito}`)
+                                    carritoContador.innerHTML=`${contadorDelCarrito}`
                                 }
                                 else{
                                   if (value){
@@ -117,6 +118,19 @@ function pintarProductos(arrayProd,carrito) {
                                 };
 
   });  
+}
+
+function mostrarMensajeConfirmacion(mensaje, color) {
+  Toastify ({
+    text: mensaje,
+    duration: 1500,
+    close: true,
+    gravity: "bottom",
+    position: "right",
+    style: {
+      background: color,
+    },
+  }).showToast();
 }
 
 function mainTest(){
@@ -176,7 +190,7 @@ class ProductosStock {
       return true
     } 
     else{
-      alert(`No hay suficiente stock. Stock disponible ${this.productosTotales[indexOfProducto].cantidad}`);
+      mostrarMensajeConfirmacion(`No hay suficiente stock. Stock disponible ${this.productosTotales[indexOfProducto].cantidad}`,"#E28553"); 
       return false
     }
   }
@@ -223,6 +237,85 @@ class Pedido {
     }
 }
 
+class ModalCarritoCompra{
+  constructor(carrito){
+    this.carrito = carrito
+    let modalIniciarCompra = document.getElementById("modalCarritoCompra");
+    
+    this.modal = new bootstrap.Modal(modalIniciarCompra);
+    this.infoContacto = {}
+  }
+  guardarInformacionDeContacto(){
+    let apellidoNombre = document.getElementById("nombre")
+    let email = document.getElementById("email")
+    let numeroDeTarjeta = document.getElementsByClassName("numeroDeTarjeta")
+    let telefono = document.getElementById("telefono")
+    this.infoContacto["telefono"] = parseInt(telefono.value)
+    this.infoContacto["email"] = email.value
+    this.infoContacto["nombre"] = apellidoNombre.value
+    this.infoContacto["numeroDeTarjeta"] = parseInt(numeroDeTarjeta.value)
+  }
+
+  abrirModal(){
+    if (this.carrito.pedidos.length !=0) {
+      const totalCompra = document.getElementById("totalCompra")
+      const resultado = document.getElementById("montoCuota");
+      totalCompra.textContent = `MONTO TOTAL: $ ${this.carrito.totalCarrito()}`
+      resultado.textContent = `1 Cuota de $ ${this.carrito.totalCarrito()}.-`;
+      let selectCuota = document.getElementById("select-cuota")
+      
+      selectCuota.addEventListener('change', (event) => {
+        switch (event.target.value) {
+          case "1": resultado.textContent = `${event.target.value} cuota de $ ${this.carrito.totalCarrito()}.-`;
+                    totalCompra.textContent = `MONTO TOTAL: $ ${this.carrito.totalCarrito()}`
+          break;
+          case "3": resultado.textContent = `${event.target.value} cuotas de $ ${(this.carrito.totalCarrito()/3).toFixed(2)}.-`;
+                    totalCompra.textContent = `MONTO TOTAL: $ ${this.carrito.totalCarrito()}`
+          break;
+          case "6": resultado.textContent = `${event.target.value} cuotas de $ ${(this.carrito.totalCarrito()*1.1/6).toFixed(2)}.-`;
+                    totalCompra.textContent = `MONTO TOTAL: $ ${(this.carrito.totalCarrito()*1.1).toFixed(2)}`
+          break;
+          case "12": resultado.textContent = `${event.target.value} cuotas de $ ${(this.carrito.totalCarrito()*1.2/12).toFixed(2)}.-`;
+                     totalCompra.textContent = `MONTO TOTAL: $ ${(this.carrito.totalCarrito()*1.2).toFixed(2)}`
+          break;
+        } 
+    });
+      this.modal.show()
+    } 
+  }
+
+  cerrarModal () {
+    let botonCerrarModal = document.getElementById("btn-cerrar-modal")
+    botonCerrarModal.onclick = () => this.modal.hide()
+  }
+
+  comprar(){
+    let formularioCompra = document.getElementById("formularioComprarCarrito")
+    formularioCompra.onsubmit = (event) => {
+      event.preventDefault();
+      this.guardarInformacionDeContacto()
+      Swal.fire({
+        title: 'Desea confirmar la compra?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            `Felicitaciones ${this.infoContacto.nombre} su compra fue exitosa!`,
+            `Le enviaremos un email a ${this.infoContacto.email} con el detalle de su pedido`,
+          ) 
+          formularioCompra.reset()
+          this.modal.hide()
+          this.carrito.finalizarCompraCarrito()
+        }
+      })
+    }
+  }
+}
+
+
 //Clase que tiene metodos para llenar el carrito, actualizar las cantidades, borra productos del pedido
 class Carrito{
   constructor(productosStock){
@@ -263,7 +356,6 @@ class Carrito{
   }
 
   agregar(pedido){
-    console.log('Activacion de agregar')
     //Verifico si hay stock y procede a agregar al carrito.
     //========================================= Desestructuracion ===================================================================
     let {producto, cantidad} = pedido  
@@ -293,6 +385,7 @@ class Carrito{
     productoABorrar.remove();
     let contenedorMontoTotal = document.getElementById("contenedor-monto-total");
     contenedorMontoTotal.innerHTML = `MONTO TOTAL: ${this.totalCarrito()}`;
+    mostrarMensajeConfirmacion("Producto eliminado correctamente", "#f4004f")
     this.actualizarCarrito();
   }
 
@@ -353,7 +446,7 @@ class Carrito{
     
     let botonEliminar = document.getElementById(`botonEliminar-${pedido.producto.id}`);
     botonEliminar.onclick = () => this.borrarOnClick(pedido.producto.id);
-    //  alert("Poducto agregado exitosamente")
+
   }) 
 
 
@@ -361,18 +454,18 @@ class Carrito{
     totalCarrito.innerHTML= `<h4 id="contenedor-monto-total" class="mt-3"> MONTO TOTAL: $ ${this.totalCarrito()} </h4>` 
     totalCompra.append(totalCarrito)
 
-     let finalizarCompra = document.createElement("div")
-     finalizarCompra.innerHTML = `<button id= "boton-iniciar-compra" class="btn m-3">INICIAR COMPRA</button>`
-     totalCompra.append(finalizarCompra)
+    let finalizarCompra = document.createElement("div")
+    finalizarCompra.innerHTML = `<button id= "boton-iniciar-compra" class="btn m-3">INICIAR COMPRA</button>`
+    totalCompra.append(finalizarCompra)
 
-     //Cuando se finaliza una compra se limpia el storage/carrito y actualiza las cantidades que fueron compradas en el stock disponible
-     let botonFinalizar = document.getElementById("boton-iniciar-compra")
-     botonFinalizar.onclick = () => { alert(`Gracias por su compra en Instituto de Danzas Time Step \n Total: $ ${this.totalCarrito()}`)
-                                      this.iniciarCompraCarrito()
-                                    }
+    let botonIniciarCompra = document.getElementById("boton-iniciar-compra");
+    let modal = new ModalCarritoCompra(this)
+    botonIniciarCompra.onclick = () => {modal.abrirModal()
+                                        modal.comprar()
+                                        modal.cerrarModal()}
   }
 
-  iniciarCompraCarrito () {
+  finalizarCompraCarrito () {
     // Disminuye la cantidad de productos comprados en el stock disponible
     // =========================================  Desestructuracion  =================================================================
     for (let pedido of this.pedidos) {

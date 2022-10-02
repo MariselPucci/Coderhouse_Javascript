@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     font-family: 'Gudea', sans-serif;
-    // background-color: #D5D8DC ;
 }
 
 body {
@@ -104,15 +103,7 @@ body {
             .container.p-3.d-flex.justify-content-between {
                 background-color: #D5D8DC;
             }
-            #boton-finalizar-compra {
-                background-color: #f4004f;
-                padding: 15px 20px;
-                letter-spacing: 4px;
-                overflow-y: hidden;
-                transition: 0.2s;
-                border: none; 
-                
-            } 
+
         }
     } 
 }
@@ -120,8 +111,8 @@ body {
 .cart-products{
     position: absolute!important;
     top: 82px;
-    right: -18px;
-    background-color: #fff;
+    right: -2px;
+    background: #fff;
     padding: 5px 18px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
     display: none;
@@ -138,6 +129,13 @@ body {
         cursor: pointer;
         color: #000;
     }
+}
+
+p.cerrar-btn{
+    top: 4px;
+    right: 6px;
+    cursor: pointer;
+    color: #000;
 }
 
 .cart:hover{
@@ -208,3 +206,67 @@ body {
 .item .item-content h5.cart-price{
     font-weight: 700;
 }
+
+
+// #modalCarritoCompra {
+//     width: 1000px;
+//     height: 900px;
+// }
+
+
+.finalizarCompra {
+    background-color: #fff;
+    padding: 10px;
+    .productos_finalizarCompra {
+        margin-top: 10px;
+    }
+
+    .datosPersonales_finalizarCompra {
+        .tarjeta_finalizarCompra {
+            padding:22px;
+            background-color: #C4C4C4;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            img {
+                width: 54px;
+                margin-bottom: 1rem;
+            }
+            label {
+                margin-bottom: 2px;
+            }
+            input {
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: 1px solid #0000;
+                background: #C4C4C4;
+                margin-bottom: 1rem;
+                &:focus {
+                    outline: none;
+                    border-bottom: 1px solid #000;
+                }
+            }
+            .izquierda_tarjeta {
+                display: flex;
+                flex-direction: column;
+                input {
+                    font-size: 22px;
+                }
+                
+                input:last-child {
+                    width: 15%;
+                }
+            }
+            .derecha_tarjeta {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                input {
+                    width: 80%;
+                }
+            }
+        }
+    }
+    
+}
+

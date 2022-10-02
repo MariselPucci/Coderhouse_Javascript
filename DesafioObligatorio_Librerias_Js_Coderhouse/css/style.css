@@ -91,20 +91,12 @@ body main #contenedor-carrito {
 body main #contenedor-carrito .container.p-3.d-flex.justify-content-between {
   background-color: #D5D8DC;
 }
-body main #contenedor-carrito #boton-finalizar-compra {
-  background-color: #f4004f;
-  padding: 15px 20px;
-  letter-spacing: 4px;
-  overflow-y: hidden;
-  transition: 0.2s;
-  border: none;
-}
 
 .cart-products {
   position: absolute !important;
   top: 82px;
-  right: -18px;
-  background-color: #fff;
+  right: -2px;
+  background: #fff;
   padding: 5px 18px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   display: none;
@@ -115,6 +107,13 @@ body main #contenedor-carrito #boton-finalizar-compra {
   width: 15px;
 }
 .cart-products p.cerrar-btn {
+  top: 4px;
+  right: 6px;
+  cursor: pointer;
+  color: #000;
+}
+
+p.cerrar-btn {
   top: 4px;
   right: 6px;
   cursor: pointer;
@@ -194,4 +193,55 @@ body main #contenedor-carrito #boton-finalizar-compra {
 
 .item .item-content h5.cart-price {
   font-weight: 700;
+}
+
+.finalizarCompra {
+  background-color: #fff;
+  padding: 10px;
+}
+.finalizarCompra .productos_finalizarCompra {
+  margin-top: 10px;
+}
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra {
+  padding: 22px;
+  background-color: #C4C4C4;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra img {
+  width: 54px;
+  margin-bottom: 1rem;
+}
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra label {
+  margin-bottom: 2px;
+}
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  background: #C4C4C4;
+  margin-bottom: 1rem;
+}
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra input:focus {
+  outline: none;
+  border-bottom: 1px solid #000;
+}
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra .izquierda_tarjeta {
+  display: flex;
+  flex-direction: column;
+}
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra .izquierda_tarjeta input {
+  font-size: 22px;
+}
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra .izquierda_tarjeta input:last-child {
+  width: 15%;
+}
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra .derecha_tarjeta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra .derecha_tarjeta input {
+  width: 80%;
 }/*# sourceMappingURL=style.css.map */
